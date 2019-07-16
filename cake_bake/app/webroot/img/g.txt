@@ -1,0 +1,31 @@
+<h1>All Students</h1>
+<button class="btn btn-success"><?php echo $this->Html->link("Add User", array('action' => 'addstudent'))  ?></button>
+
+<div class="table">
+    <tr style="font-weight: bold; font-size: large">
+        <td>Name</td>
+        <td>CGPA</td>
+        <td>Semester</td>
+        <td>Picture</td>
+        <td>CSV File</td>
+        <td>Delete</td>
+        <td>Update</td>
+
+    </tr>
+<?php foreach ($students as $student): ?>
+    
+    <tr>
+          
+        <td> <?php echo $student['Student']['name']?></td>
+        <td> <?php echo $student['Student']['cgpa']?></td>
+        <td> <?php echo $student['Student']['semester']?></td>
+        <td> <?php echo $this->Html->image($student['Student']['imagePath'], array('alt' => 'Ismail' )); ?> </td>
+        <td><button type="button" class="btn btn-success"><?php echo $this->Form->postLink("CSV File", array('action' => 'displaycvs', $student['Student']['cvsFile'])); ?></button> </td>
+        <td><button type="button" class="btn btn-danger"><?php echo $this->Form->postLink( 'Delete', array('action' => 'deletestudent', $student['Student']['id'])) ;?></button></td>
+        <td><?php echo $this->Form->postlink( "Update", array('action'=>'updatestudent', $student['Student']['id'])) ;?></td>
+
+    </tr>
+<?php endforeach; ?>
+<?php unset($student); ?>
+
+</div>
